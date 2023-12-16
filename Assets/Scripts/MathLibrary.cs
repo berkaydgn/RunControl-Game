@@ -26,6 +26,7 @@ namespace Library
                                 item2.SetActive(true);
                                 item2.transform.position = newpoz;
                                 item2.GetComponent<ParticleSystem>().Play();
+                                item2.GetComponent<AudioSource>().Play();
                                 break;
                             }
                         }
@@ -64,6 +65,7 @@ namespace Library
                                 item2.SetActive(true);
                                 item2.transform.position = newpoz;
                                 item2.GetComponent<ParticleSystem>().Play();
+                                item2.GetComponent<AudioSource>().Play();
                                 break;
                             }
                         }
@@ -100,6 +102,7 @@ namespace Library
                             item2.SetActive(true);
                             item2.transform.position = item.transform.position;
                             item2.GetComponent<ParticleSystem>().Play();
+                            item2.GetComponent<AudioSource>().Play();
                             break;
                         }
                     } 
@@ -166,6 +169,7 @@ namespace Library
                             item2.SetActive(true);
                             item2.transform.position = item.transform.position;
                             item2.GetComponent<ParticleSystem>().Play();
+                            item2.GetComponent<AudioSource>().Play();
                             break;
                         }
                     }

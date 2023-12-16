@@ -57,5 +57,10 @@ public class CopyPlayer : MonoBehaviour
             gameObject.SetActive(false);
         }
 
+        else if (other.CompareTag("EmptyNinja"))
+        {
+            _GameManager.CopyPlayers.Add(other.gameObject);
+        }
+
     }
 }

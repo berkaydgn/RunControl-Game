@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
                 item.SetActive(true);
                 item.transform.position = position;
                 item.GetComponent<ParticleSystem>().Play();
+                item.GetComponent<AudioSource>().Play();
                 if (!condition)
                 {
                     PlayerCount--;
