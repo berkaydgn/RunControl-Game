@@ -5,9 +5,9 @@ using UnityEngine.UIElements;
 
 namespace Library
 {
-    public class MathLibrary : MonoBehaviour
+    public class MathLibrary
     {
-        public static void Impact(int inComingNumber, List<GameObject> CopyPlayers, Transform position, List<GameObject> FormationEffects)
+        public void Impact(int inComingNumber, List<GameObject> CopyPlayers, Transform position, List<GameObject> FormationEffects)
         {
             int numberOfLoops = (GameManager.PlayerCount * inComingNumber) - GameManager.PlayerCount;
             int number = 0;
@@ -47,7 +47,7 @@ namespace Library
             GameManager.PlayerCount *= inComingNumber;
         }
 
-        public static void Collection(int inComingNumber, List<GameObject> CopyPlayers, Transform position, List<GameObject> FormationEffects)
+        public void Collection(int inComingNumber, List<GameObject> CopyPlayers, Transform position, List<GameObject> FormationEffects)
         {
             int number2 = 0;
             foreach (var item in CopyPlayers)
@@ -86,7 +86,7 @@ namespace Library
             GameManager.PlayerCount += inComingNumber;
         }
 
-        public static void Extraction(int inComingNumber, List<GameObject> CopyPlayers, List<GameObject> ExtinctionEffects)
+        public void Extraction(int inComingNumber, List<GameObject> CopyPlayers, List<GameObject> ExtinctionEffects)
         {
 
             if (GameManager.PlayerCount < inComingNumber)
@@ -155,7 +155,7 @@ namespace Library
 
         }
 
-        public static void Divide(int inComingNumber, List<GameObject> CopyPlayers, List<GameObject> ExtinctionEffects)
+        public void Divide(int inComingNumber, List<GameObject> CopyPlayers, List<GameObject> ExtinctionEffects)
         {
             if (GameManager.PlayerCount <= inComingNumber)
             {
@@ -237,4 +237,54 @@ namespace Library
         }
 
     }
+
+    public class MemoryManagment
+    {
+        public void SaveData_s(string key, string value)
+        {
+            PlayerPrefs.SetString(key, value);
+            PlayerPrefs.Save();
+        }
+
+        public void SaveData_i(string key, int value)
+        {
+            PlayerPrefs.SetInt(key, value);
+            PlayerPrefs.Save();
+        }
+
+        public void SaveData_f(string key, float value)
+        {
+            PlayerPrefs.SetFloat(key, value);
+            PlayerPrefs.Save();
+        }
+
+
+        public string ReadData_s(string key)
+        {
+            return PlayerPrefs.GetString(key);
+        }
+
+        public int ReadData_i(string key)
+        {
+            return PlayerPrefs.GetInt(key);
+        }
+
+        public float ReadData_f(string key)
+        {
+            return PlayerPrefs.GetFloat(key);
+        }
+
+        public void CheckAndIdentify()
+        {
+            if (!PlayerPrefs.HasKey("LastLevel"))
+            {
+                PlayerPrefs.SetInt("LastLevel", 5);
+                PlayerPrefs.SetInt("puan", 0);
+            }
+        }
+
+
+
+    }
+
 }

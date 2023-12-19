@@ -20,12 +20,17 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     public bool IsTheLvlOver;
 
+    MathLibrary _mathLibrary = new MathLibrary();
+    MemoryManagment _memoryManagment = new MemoryManagment();
+
     private void Start()
     {
         EnemiesCreate();
+
+
+        Debug.Log(_memoryManagment.ReadData_i("puan"));
+
     }
-
-
 
 
     public void EnemiesCreate()
@@ -41,19 +46,19 @@ public class GameManager : MonoBehaviour
         switch(operationType)
         {
             case "Impact":
-                MathLibrary.Impact(inComingNumber, CopyPlayers, position, FormationEffects);
+                _mathLibrary.Impact(inComingNumber, CopyPlayers, position, FormationEffects);
                 break;
 
             case "Collection":
-                MathLibrary.Collection(inComingNumber, CopyPlayers, position, FormationEffects);
+                _mathLibrary.Collection(inComingNumber, CopyPlayers, position, FormationEffects);
                 break;
 
             case "Extraction":
-                MathLibrary.Extraction(inComingNumber, CopyPlayers, ExtinctionEffects);
+                _mathLibrary.Extraction(inComingNumber, CopyPlayers, ExtinctionEffects);
                 break;
 
             case "Divide":
-                MathLibrary.Divide(inComingNumber, CopyPlayers, ExtinctionEffects);
+                _mathLibrary.Divide(inComingNumber, CopyPlayers, ExtinctionEffects);
                 break;
         }
     }
@@ -145,6 +150,7 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
+                    PlayerPrefs.SetInt("puan", _memoryManagment.ReadData_i("puan") + 600);
                     Debug.Log("Kazandin");
                 }
 
