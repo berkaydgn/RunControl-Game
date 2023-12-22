@@ -150,8 +150,17 @@ public class GameManager : MonoBehaviour
                 }
                 else
                 {
-                    PlayerPrefs.SetInt("puan", _memoryManagment.ReadData_i("puan") + 600);
+                    if (PlayerCount > 5)
+                    {
+                        _memoryManagment.SaveData_i("puan", _memoryManagment.ReadData_i("puan") + 600);
+                        _memoryManagment.SaveData_i("LastLevel", _memoryManagment.ReadData_i("LastLevel") + 1);
+                    }
+                    else
+                        _memoryManagment.SaveData_i("puan", _memoryManagment.ReadData_i("puan") + 200);
+                        _memoryManagment.SaveData_i("LastLevel", _memoryManagment.ReadData_i("LastLevel") + 1);
+                    
                     Debug.Log("Kazandin");
+
                 }
 
             }
