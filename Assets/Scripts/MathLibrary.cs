@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
 
 namespace Library
 {
@@ -285,6 +289,60 @@ namespace Library
 
 
 
+    }
+
+    public class Data
+    {
+        public static List<ItemInformation> _ItemInformation = new List<ItemInformation>();
+    }
+
+    [Serializable]
+    public class ItemInformation
+    {
+        public int GroupIndex;
+        public int ItemIndex;
+        public string ItemName;
+        public int Score;
+        public bool PurchaseStatus;
+    }
+
+    public class DataManagment
+    {
+        public void Save(List<ItemInformation> _ItemInformation)
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.OpenWrite(Application.persistentDataPath + "/ItemData.gd");
+            bf.Serialize(file, _ItemInformation);
+            file.Close();
+        }
+        
+        List<ItemInformation> _ItemInformation2;
+        public void Load()
+        {
+            if (File.Exists(Application.persistentDataPath + "/ItemData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Open(Application.persistentDataPath + "/ItemData.gd", FileMode.Open);
+                _ItemInformation2 = (List<ItemInformation>)bf.Deserialize(file);
+                file.Close();
+            }
+        }
+
+        public List<ItemInformation> TransferList()
+        {
+            return _ItemInformation2;
+        }
+
+        public void FirstSaveFile(List<ItemInformation> _ItemInformation)
+        {
+            if (!File.Exists(Application.persistentDataPath + "/ItemData.gd"))
+            {
+                BinaryFormatter bf = new BinaryFormatter();
+                FileStream file = File.Create(Application.persistentDataPath + "/ItemData.gd");
+                bf.Serialize(file, _ItemInformation);
+                file.Close();
+            }
+        }
     }
 
 }

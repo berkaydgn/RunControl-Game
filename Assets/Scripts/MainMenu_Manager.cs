@@ -8,12 +8,14 @@ using Library;
 public class MainMenu_Manager : MonoBehaviour
 {
     MemoryManagment _memoryManagment = new MemoryManagment();
+    DataManagment _DataManagment = new DataManagment();
     public GameObject ExitPanel;
-
+    public List<ItemInformation> _ItemInformation = new List<ItemInformation>();
 
     void Start()
     {
         _memoryManagment.CheckAndIdentify();
+
     }
 
     public void SceneLoad(int index)
