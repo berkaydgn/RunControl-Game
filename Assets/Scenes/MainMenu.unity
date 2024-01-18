@@ -1305,6 +1305,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ExitPanel: {fileID: 921475362}
+  _ItemInformation:
+  - GroupIndex: 1
+    ItemIndex: 0
+    ItemName: Hat 1
+    Score: 350
+    PurchaseStatus: 0
+  - GroupIndex: 1
+    ItemIndex: 1
+    ItemName: Hat 2
+    Score: 480
+    PurchaseStatus: 0
+  - GroupIndex: 1
+    ItemIndex: 2
+    ItemName: Hat 3
+    Score: 750
+    PurchaseStatus: 0
+  - GroupIndex: 2
+    ItemIndex: 0
+    ItemName: Bat 1
+    Score: 300
+    PurchaseStatus: 0
+  - GroupIndex: 2
+    ItemIndex: 1
+    ItemName: Bat 2
+    Score: 500
+    PurchaseStatus: 0
+  - GroupIndex: 2
+    ItemIndex: 2
+    ItemName: Bat 3
+    Score: 700
+    PurchaseStatus: 0
+  - GroupIndex: 3
+    ItemIndex: 0
+    ItemName: Colour 1
+    Score: 400
+    PurchaseStatus: 0
+  - GroupIndex: 3
+    ItemIndex: 1
+    ItemName: Colour 2
+    Score: 600
+    PurchaseStatus: 0
+  - GroupIndex: 3
+    ItemIndex: 2
+    ItemName: Colour 3
+    Score: 650
+    PurchaseStatus: 0
+  - GroupIndex: 3
+    ItemIndex: 3
+    ItemName: Colour 4
+    Score: 700
+    PurchaseStatus: 0
 --- !u!4 &749590153
 Transform:
   m_ObjectHideFlags: 0

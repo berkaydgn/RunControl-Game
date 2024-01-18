@@ -283,17 +283,15 @@ namespace Library
             if (!PlayerPrefs.HasKey("LastLevel"))
             {
                 PlayerPrefs.SetInt("LastLevel", 5);
-                PlayerPrefs.SetInt("puan", 0);
+                PlayerPrefs.SetInt("Coin", 100);
+                PlayerPrefs.SetInt("ActiveHat", -1);
+                PlayerPrefs.SetInt("ActiveBat", -1);
+                PlayerPrefs.SetInt("ActiveColour", -1);
             }
         }
 
 
 
-    }
-
-    public class Data
-    {
-        public static List<ItemInformation> _ItemInformation = new List<ItemInformation>();
     }
 
     [Serializable]

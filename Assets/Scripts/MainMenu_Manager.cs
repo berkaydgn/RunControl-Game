@@ -15,7 +15,7 @@ public class MainMenu_Manager : MonoBehaviour
     void Start()
     {
         _memoryManagment.CheckAndIdentify();
-
+        _DataManagment.FirstSaveFile(_ItemInformation);
     }
 
     public void SceneLoad(int index)

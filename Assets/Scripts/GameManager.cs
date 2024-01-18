@@ -4,6 +4,9 @@ using UnityEditor;
 using UnityEngine;
 using Library;
 using UnityEngine.UIElements;
+using TMPro;
+//using System.Diagnostics;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,17 +22,29 @@ public class GameManager : MonoBehaviour
     public int HowManyEnemies;
     public GameObject Player;
     public bool IsTheLvlOver;
+    [Header("--------HATS")]
+    public GameObject[] Hats;
+    [Header("--------BATS")]
+    public GameObject[] Bats;
+    [Header("--------COLOURS")]
+    public Material[] Colours;
+    public SkinnedMeshRenderer _Renderer;
+    public Material DefaultColour;
 
     MathLibrary _mathLibrary = new MathLibrary();
     MemoryManagment _memoryManagment = new MemoryManagment();
 
+    Scene _Scene;
+    private void Awake()
+    {
+        ItemCheck();
+    }
+
     private void Start()
     {
         EnemiesCreate();
-
-
-        Debug.Log(_memoryManagment.ReadData_i("puan"));
-
+        _Scene = SceneManager.GetActiveScene();
+    
     }
 
 
@@ -152,13 +167,21 @@ public class GameManager : MonoBehaviour
                 {
                     if (PlayerCount > 5)
                     {
-                        _memoryManagment.SaveData_i("puan", _memoryManagment.ReadData_i("puan") + 600);
-                        _memoryManagment.SaveData_i("LastLevel", _memoryManagment.ReadData_i("LastLevel") + 1);
+                        if (_Scene.buildIndex == _memoryManagment.ReadData_i("LastLevel"))
+                        {
+                            _memoryManagment.SaveData_i("puan", _memoryManagment.ReadData_i("puan") + 600);
+                            _memoryManagment.SaveData_i("LastLevel", _memoryManagment.ReadData_i("LastLevel") + 1);
+                        }
+                            
                     }
                     else
+                        if (_Scene.buildIndex == _memoryManagment.ReadData_i("LastLevel"))
+                        {
                         _memoryManagment.SaveData_i("puan", _memoryManagment.ReadData_i("puan") + 200);
                         _memoryManagment.SaveData_i("LastLevel", _memoryManagment.ReadData_i("LastLevel") + 1);
-                    
+                        }
+
+
                     Debug.Log("Kazandin");
 
                 }
@@ -167,5 +190,27 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void ItemCheck()
+    {
+        if (_memoryManagment.ReadData_i("ActiveHat") != -1)
+            Hats[_memoryManagment.ReadData_i("ActiveHat")].SetActive(true);
+
+        if (_memoryManagment.ReadData_i("ActiveBat") != -1)
+            Bats[_memoryManagment.ReadData_i("ActiveBat")].SetActive(true);
+
+        if (_memoryManagment.ReadData_i("ActiveColour") != -1)
+        {
+            Material[] mats = _Renderer.materials;
+            mats[0] = Colours[_memoryManagment.ReadData_i("ActiveColour")];
+            _Renderer.materials = mats;
+        }
+        else
+        {
+            Material[] mats = _Renderer.materials;
+            mats[0] = DefaultColour;
+            _Renderer.materials = mats;
+        }
+
+    }
 
 }
