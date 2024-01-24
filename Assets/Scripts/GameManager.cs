@@ -35,8 +35,12 @@ public class GameManager : MonoBehaviour
     MemoryManagment _memoryManagment = new MemoryManagment();
 
     Scene _Scene;
+    public AudioSource GameSound;
+
     private void Awake()
     {
+        GameSound.volume = _memoryManagment.ReadData_f("GameSound");
+        Destroy(GameObject.FindWithTag("MenuSound"));
         ItemCheck();
     }
 

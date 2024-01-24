@@ -18,6 +18,7 @@ TagManager:
   - AttackTrigger
   - Mast
   - EmptyNinja
+  - MenuSound
   layers:
   - Default
   - TransparentFX

@@ -45,6 +45,7 @@ public class Customize : MonoBehaviour
     public List<ItemInformation> _ItemInformation = new List<ItemInformation>();
 
     public Animator Saved_Animator;
+    public AudioSource[] Sounds;
 
     void Start()
     {
@@ -56,6 +57,11 @@ public class Customize : MonoBehaviour
         StatusCheck(0, true);
         StatusCheck(1, true);
         StatusCheck(2, true);
+
+        foreach (var item in Sounds)
+        {
+            item.volume = _Memorymanagment.ReadData_f("MenuFx");
+        }
     }
 
     public void StatusCheck(int Section, bool process=false)
@@ -176,6 +182,7 @@ public class Customize : MonoBehaviour
 
     public void Buy()
     {
+        Sounds[1].Play();
         if (activeProcessPanel != -1)
         {
             switch (activeProcessPanel)
@@ -197,9 +204,9 @@ public class Customize : MonoBehaviour
 
     public void Equip()
     {
+        Sounds[2].Play();
         if (activeProcessPanel != -1)
         {
-
             switch (activeProcessPanel)
             {
                 case 0:
@@ -217,6 +224,7 @@ public class Customize : MonoBehaviour
     
     public void HatDirectionalButtons(string process)
     {
+        Sounds[0].Play();
         if (process == "Forward")
         {
             if (HatIndex == -1)
@@ -327,6 +335,7 @@ public class Customize : MonoBehaviour
 
     public void BatDirectionalButtons(string process)
     {
+        Sounds[0].Play();
         if (process == "Forward")
         {
             if (BatIndex == -1)
@@ -436,6 +445,7 @@ public class Customize : MonoBehaviour
 
     public void ColourDirectionalButtons(string process)
     {
+        Sounds[0].Play();
         if (process == "Forward")
         {
             if (ColourIndex == -1)
@@ -560,6 +570,7 @@ public class Customize : MonoBehaviour
 
     public void ShowPanel(int index)
     {
+        Sounds[0].Play();
         StatusCheck(index);
         GeneralPanels[0].SetActive(true);
         activeProcessPanel = index;
@@ -570,6 +581,7 @@ public class Customize : MonoBehaviour
 
     public void TurnBack()
     {
+        Sounds[1].Play();
         GeneralPanels[0].SetActive(false);
         ProcessCanvas.SetActive(true);
         GeneralPanels[1].SetActive(false);
@@ -580,6 +592,7 @@ public class Customize : MonoBehaviour
     
     public void ReturnMainMenu()
     {
+        Sounds[0].Play();
         _Datamanagment.Save(_ItemInformation);
         SceneManager.LoadScene(0);
     }

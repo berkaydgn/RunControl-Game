@@ -286,7 +286,10 @@ namespace Library
                 PlayerPrefs.SetInt("Coin", 100);
                 PlayerPrefs.SetInt("ActiveHat", -1);
                 PlayerPrefs.SetInt("ActiveBat", -1);
-                PlayerPrefs.SetInt("ActiveColour", -1);
+                PlayerPrefs.SetInt("ActiveColour", -1); 
+                PlayerPrefs.SetFloat("MenuSound", 1); 
+                PlayerPrefs.SetFloat("MenuFx", 1); 
+                PlayerPrefs.SetFloat("GameSound", 1); 
             }
         }
 
