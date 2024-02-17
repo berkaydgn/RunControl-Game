@@ -26,29 +26,30 @@ public class Player : MonoBehaviour
     }
 
     void Update()
-    {   
-
-        if(attackArena)
+    {
+        if (Time.timeScale != 0)
         {
-            transform.position = Vector3.Lerp(transform.position, WaitingPoint.transform.position, .015f);
-            if (_Slider.value != 0)
-                _Slider.value -= .002f;
-        }
-        else
-        {
-            float Diff = Vector3.Distance(transform.position, WayPoint.transform.position);
-            _Slider.value = Diff;
-
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (attackArena)
             {
+                transform.position = Vector3.Lerp(transform.position, WaitingPoint.transform.position, .015f);
+                if (_Slider.value != 0)
+                    _Slider.value -= .002f;
+            }
+            else
+            {
+                float Diff = Vector3.Distance(transform.position, WayPoint.transform.position);
+                _Slider.value = Diff;
 
-                if (Input.GetAxis("Mouse X") < 0)
+                if (Input.GetKey(KeyCode.Mouse0))
                 {
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
-                }
-                if (Input.GetAxis("Mouse X") > 0)
-                {
-                    transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
+                    if (Input.GetAxis("Mouse X") < 0)
+                    {
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x - .1f, transform.position.y, transform.position.z), .3f);
+                    }
+                    if (Input.GetAxis("Mouse X") > 0)
+                    {
+                        transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x + .1f, transform.position.y, transform.position.z), .3f);
+                    }
                 }
             }
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using Library;
 using UnityEngine.UIElements;
 using TMPro;
@@ -35,11 +36,16 @@ public class GameManager : MonoBehaviour
     MemoryManagment _memoryManagment = new MemoryManagment();
 
     Scene _Scene;
-    public AudioSource GameSound;
+    [Header("--------GENERAL DATAS")]
+    public AudioSource[] Sounds;
+    public GameObject[] ActionPanels;
+    public UnityEngine.UI.Slider GameSoundSlider;
 
     private void Awake()
     {
-        GameSound.volume = _memoryManagment.ReadData_f("GameSound");
+        Sounds[0].volume = _memoryManagment.ReadData_f("GameSound");
+        GameSoundSlider.value = _memoryManagment.ReadData_f("GameSound");
+        Sounds[1].volume = _memoryManagment.ReadData_f("MenuFx");
         Destroy(GameObject.FindWithTag("MenuSound"));
         ItemCheck();
     }
@@ -215,6 +221,52 @@ public class GameManager : MonoBehaviour
             _Renderer.materials = mats;
         }
 
+    }
+
+    public void ExitButtonOperation(string value)
+    {
+        Sounds[1].Play();
+
+        if (value == "Stop")
+        {
+            Time.timeScale = 0;
+            ActionPanels[0].SetActive(true);
+        }
+        else if (value == "Continue")
+        {
+            ActionPanels[0].SetActive(false);
+            Time.timeScale = 1;
+        }
+        else if (value == "Replay")
+        {
+            SceneManager.LoadScene(_Scene.buildIndex);
+            Time.timeScale = 1;
+        }
+        else if(value == "MainMenu")
+        {
+            SceneManager.LoadScene(0);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void Settings(string value)
+    {
+        if (value == "Settings")
+        {
+            ActionPanels[1].SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            ActionPanels[1].SetActive(false);
+            Time.timeScale = 1;
+        }
+    }
+
+    public void SoundSetting()
+    {
+        _memoryManagment.SaveData_f("GameSound", GameSoundSlider.value);
+        Sounds[0].volume = GameSoundSlider.value;
     }
 
 }
